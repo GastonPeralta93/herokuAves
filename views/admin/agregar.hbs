@@ -1,15 +1,17 @@
 <div class="container" style="margin:100px auto">
     <div class="row">
         <div class="col-6 offset-3">
-            <h4>Agregar una nueva novedad</h4> 
-            <form action="/admin/novedades/agregar" method="post" enctype="multipart/form-data">
+            <h4>Agregar un nuevo producto</h4> 
+            <form action="/admin/productos/agregar" method="post" enctype="multipart/form-data">
                 <div class="form-group">
+                    <label for="">Nombre</label>
                     <input type="text" class="form-control"
-                    placeholder="Titulo" name="titulo">
+                    placeholder="Nombre" name="titulo">
                 </div>
                 <div class="form-group">
+                    <label for="">Especie</label>
                     <textarea type="text" class="form-control"
-                    placeholder="Subtitulo" name="subtitulo"></textarea>
+                    placeholder="Especie" name="subtitulo"></textarea>
                 </div>
                 <div class="form-group">
                     <label>
@@ -18,9 +20,23 @@
 
                 </div>
                 <div class="form-group">
+                    <label for="">Descripción</label>
                     <textarea type="text" class="form-control"
-                    placeholder="Cuerpo" name="cuerpo"></textarea>
+                    placeholder="Descripcion" name="cuerpo"></textarea>
                 </div>
+
+                <div class="form-group">
+                    <label for="">Precio</label>
+                    <input type="text" class="form-control"
+                    placeholder="Precio (debe ser un número)" name="precio">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Descuento</label>
+                    <input type="text" class="form-control"
+                    placeholder="Descuento (debe ser un número)" name="descuento">
+                </div>
+
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
             {{#if error}}

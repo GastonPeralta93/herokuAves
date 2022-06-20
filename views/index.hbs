@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,21 +11,20 @@
                     <a class="nav-link" data-scroll href="#home">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-scroll href="#novedades">Novedades</a>
+                    <a class="nav-link" data-scroll href="#productos">Productos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-scroll href="#historia">Historias</a>
+                    <a class="nav-link" data-scroll href="#historia">Historia</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-scroll href="#nosotros">Nosotros</a>
+                    <a class="nav-link" data-scroll href="#taxonomia">Taxonomia</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-scroll href="#conocenos">Conocenos</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form method="get" action="/admin/login">
+                <button type="submit">Admin</button>
             </form>
         </div>
     </nav>
@@ -33,32 +32,72 @@
 <br>
 <div class="container-fluid">
     <div id="home" class="row align-items-center hero">
-        <div class="col-lg-3 offset-lg-2">
-            <p>Bajada</p>
-            <h1>Titulo Principal</h1>
-            <p>lore ipsum etc</p>
+        <div class="col-lg-3 offset-lg-2" style="color: black; background-color: lightgrey;">
+            <h1>Tierra de Aves</h1>
+            <p>...todo sobre aves...</p>
         </div>
     </div>
 </div>
 <br>
-<div id="novedades" class="row py-4">
-    <div class="col-md-5 offset-md-2 py-3">
-        <h2>Novedades</h2>
 
-        <ul class="lista-novedades">
-            {{#each novedades}}
+<h3 style="text-align: center;">Listado de Aves a la Venta: </h3>
+
+<p id="productos"></p>
+<br>
+    <div class="row" >
+        <div class="col" style="margin-left: 20px; margin-right: 20px;">
+            <table class="table table-dark table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Descuento</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Especie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each novedades}}
+                    <tr>
+                        <td>{{titulo}}</td>
+                        <td><img src="{{{imagen}}}" 
+                        style="border-radius: 50%; width: 65px; height: 65px;"></td> 
+                        <th>${{precio}}</th>
+                        <th>{{descuento}}%</th>
+                        <th>{{cuerpo}}</th>
+                        <th>{{subtitulo}}</th>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+
+<div id="otros" class="row py-4">
+    <div class="col-md-5 offset-md-2 py-3">
+
+        <h2>Qué son las aves?</h2>
+
+        <ul class="lista">
             <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#modal{{ id }}">
-                    <img src="{{imagen}}"> {{titulo}}
-                </a>
+                <img src="/images/aves_2.jpg" style="height:50px; width:150px;" alt="sin imagen">
+                <p>Son vertebrados ovíparos cubiertos de plumas, los cuales también son conocidos como pájaros...</p>
+
             </li>
-            {{/each}} 
+            <li>
+                <img src="/images/aves_1.jpg" style="height:50px; width:150px;" alt="sin imagen">
+                <p>Nuestro planeta alberga maravillas. En él podemos encontrar aves tan pequeñas como una abeja y aves 
+                    tan grandes como un elefante.</p>
+            </li>
+
         </ul>
     </div>
 
     <div class="col-md-3">
         <div class="rounded py-3 testimonios">
-            <h2 class="text-center">Testimonios</h2>
+            <h2 class="text-center">Nuestros fans</h2>
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -68,19 +107,19 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="testimonio">
-                            <h5>"La mejor birra del mundo!!"</h5>
+                            <h5>"La mejor página del mundo!"</h5>
                             <p>Francisco, Monte Grande</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="testimonio">
-                            <h5>"La mejor birra del mundo 2!!"</h5>
+                            <h5>"Las mejores fotos de aves!"</h5>
                             <p>Gaston, Berazategui</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="testimonio">
-                            <h5>"La mejor birra del mundo 3!!"</h5>
+                            <h5>"Siempre compro acá la mejor calidad"</h5>
                             <p>Jorge, Sourigues</p>
                         </div>
                     </div>
@@ -121,67 +160,73 @@
 </div>
 {{/each}}
 {{!-- fin modal --}}
+
+
 <div id="historia" class="row align-items-center py-4">
     <div class="col-lg-2 col-md-3 offset-lg-2 d-none d-sm-block">
-        <img src="images/historia_1.jpg" alt="historia 1" class="img-fluid">
+        <img src="images/historia_01.jpg" style= "height: 270px;" alt="historia 1" class="img-fluid">
     </div>
     <div class="col-lg-2 col-md-3 d-none d-sm-block">
-        <img src="images/historia_2.jpg" alt="historia 2" class="img-fluid">
-    </div>
-    <div class="col-12 d-sm-none">
-        <img src="images/historia_3.jpg" alt="historia 3" class="img-fluid">
+        <img src="images/historia_02.jpg" style= "height: 270px;" alt="historia 2" class="img-fluid">
     </div>
     <div class="col-lg-4 col-md-6 mt-4 mt-sm-0">
         <h2>Historia</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In maiores, amet quis
-            accusamus nisi a veritatis mollitia tempora autem eius voluptatum maxime debitis
-            libero inventore temporibus reprehenderit quos labore dolores!
+        <p>La naturaleza silvestre está en retroceso en todo el mundo. Diversas y crecientes actividades económicas, 
+            muchas de las cuales sostienen el estilo de vida actual de buena parte de la humanidad, impactan 
+            negativamente en los ambientes naturales, llevando a muchos de ellos y a las especies de flora y fauna 
+            que los componen a un estado muy comprometido de conservación. Ante este panorama nos esforzamos
+            por esparcir las especies para mejorar la realidad ambiental.
         </p>
     </div>
 </div>
-<div id="nosotros" class="row align-items-stretch my-3 staff py-4">
-    <div class="col-lg-8 offset-lg-2">
-        <h2>Nosotros</h2>
-        <div class="card-deck">
-            <div class="card">
-                <img src="images/nosotros01.jpg" class="card-img-top" alt="nosotros01">
-                <div class="card-body">
-                    <h5 class="card-title">Diana Reyes</h5>
-                    <p class="card-text">Un texto de ejemplo rápido, para construir
-                        en la carta y rellenar un poco el contenido.
-                    </p>
+<p id="taxonomia"></p>
+<div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card shadow" style="width: 18rem;">
+                    <h2 class="text-center"><span class="badge badge-secondary">Loros</span></h2>
+                    <img src="images/loro.png" class="card-img-top"
+                        alt="descripcion de imagen">
+                    <div class="card-body">
+                        <h5 class="card-title">Psittacoidea</h5>
+                        <p class="card-text">Los loros se caracterizan por tener un pico curvado, con una mandíbula inferior 
+                            con cierta movilidad en su conexión con el cráneo y situada en una posición bastante vertical. 
+                            Además tienen una gran capacidad craneal y son uno de los grupos de aves más inteligentes.</p>
+                        <a href="https://es.wikipedia.org/wiki/Psittacoidea" class="btn btn-primary">Visitar Wiki</a>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <img src="images/nosotros02.jpg" class="card-img-top" alt="nosotros02">
-                <div class="card-body">
-                    <h5 class="card-title">Gabriel Gomez</h5>
-                    <p class="card-text">Un texto de ejemplo rápido, para construir
-                        en la carta y rellenar un poco el contenido.
-                    </p>
+            <div class="col-sm">
+                <div class="card shadow" style="width: 18rem;">
+                    <h2 class="text-center"><span class="badge badge-secondary">Tucanes</span></h2>
+                    <img src="images/tucan.png" class="card-img-top"
+                        alt="descripcion de imagen">
+                    <div class="card-body">
+                        <h5 class="card-title">Ramphastidae</h5>
+                        <p class="card-text">Los tucanes son aves de plumas y pico de colores muy llamativos. 
+                            Miden 65 centímetros y pesan de 130 hasta 680 gramos. Su pico es largo con una longitud aproximada 
+                            de 20 cm y alcanzando su talla definitiva después de varios meses.</p>
+                        <a href="https://es.wikipedia.org/wiki/Ramphastidae" class="btn btn-primary">Visitar Wiki</a>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <img src="images/nosotros03.jpg" class="card-img-top" alt="nosotros03">
-                <div class="card-body">
-                    <h5 class="card-title">Ezequiel Lopez</h5>
-                    <p class="card-text">Un texto de ejemplo rápido, para construir
-                        en la carta y rellenar un poco el contenido.
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="images/nosotros04.jpg" class="card-img-top" alt="nosotros04">
-                <div class="card-body">
-                    <h5 class="card-title">Chris Maisner</h5>
-                    <p class="card-text">Un texto de ejemplo rápido, para construir
-                        en la carta y rellenar un poco el contenido.
-                    </p>
+            <div class="col-sm">
+                <div class="card shadow" style="width: 18rem;">
+                    <h2 class="text-center"><span class="badge badge-secondary">Pinguinos</span></h2>
+                    <img src="images/pinguino.png" class="card-img-top" 
+                        alt="descripcion de imagen">
+                    <div class="card-body">
+                        <h5 class="card-title">Spheniscidae</h5>
+                        <p class="card-text">En tierra construyen nidos circulares de piedras, y ponen alrededor de dos huevos, 
+                            que son incubados alternadamente por el padre y la madre por turnos de cinco a diez días. Pueden 
+                            también procrear sobre icebergs, aunque prefieren lugares sin hielo. Los huevos eclosionan después 
+                            de treinta y cinco días.</p>
+                        <a href="https://es.wikipedia.org/wiki/Spheniscidae" class="btn btn-primary">Visitar Wiki</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 <div id="conocenos" class="row py-4">
     <div class="col-md-4 offset-md-2">
         <h2>Visitanos</h2>
@@ -225,6 +270,79 @@
     </div>
 </div>
 <br>
-<footer>
-    <p class="text-center">Diseñado por Gaston Peralta 2020</p>
-</footer>
+<footer class="text-center text-lg-start bg-light text-muted">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <div class="me-5 d-none d-lg-block">
+                <span>Conectate con nuestras redes:</span>
+            </div>
+            <div>
+                Mapa del sitio:
+            </div>
+        </section>
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Tierra De Aves
+                        </h6>
+                        <p>
+                            Si deseas crear algún articulo como autor invitado o eres una empresa y deseas que llevemos 
+                            a cabo un contacto beneficioso solo tienes que enviarme un email a: tierrapajaros@elemail.com
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Productos
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Antipulgas</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Comida</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Vacunas</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Silbatos</a>
+                        </p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Links útiles
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Precios</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Configurar página</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Ordenes de compra</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Ayuda</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Contacto:
+                        </h6>
+                        <p><i class="fas fa-home me-3"></i> Buenos Aires, Berazategui, 1234321</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            porejemplo@contacto.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2022 Copyright:
+            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">TierraDeAves.com.ar</a>
+        </div>
+    </footer>

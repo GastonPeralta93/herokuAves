@@ -1,8 +1,13 @@
 footer {
-    background-color:#aaa;
+    background-color: #aaa;
 }
 
-h1, h2 {
+body {
+    background-color: #e2e2c3;
+}
+
+h1,
+h2 {
     font-family: 'Alfa Slab One', cursive;
 }
 
@@ -10,8 +15,8 @@ h1, h2 {
     background: url(../images/header.jpg) no-repeat;
     background-size: cover;
     height: 50vh;
-    min-height: 600px;
-    color:white;
+    min-height: 250px;
+    color: white;
 }
 
 .textodelmodal {
@@ -99,9 +104,3 @@ h1, h2 {
 .staff {
     background: #efefef;
 }
-
-
-
-
-
-

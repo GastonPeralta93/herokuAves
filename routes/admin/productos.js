@@ -5,16 +5,13 @@ var router = express.Router();
 var novedadesModel = require('../../models/novedadesModel')
 var util = require('util');
 var cloudinary = require('cloudinary').v2;
-
 var uploader = util.promisify(cloudinary.uploader.upload);
 const destroy = util.promisify(cloudinary.uploader.destroy);
-
 
     //async porque no se cuando en que momento va a cargar estas novedades
 router.get('/', async function (req, res, next) {
     
     //var novedades = await novedadesModel.getNovedades();
-    
     var novedades
     if (req.query.q === undefined) {
         novedades = await novedadesModel.getNovedades();
@@ -41,11 +38,7 @@ router.get('/', async function (req, res, next) {
         }
     });
 
-
-
-
-
-    res.render('admin/novedades', {
+    res.render('admin/productos', {
         layout:'admin/layout',
         usuario: req.session.nombre,
         novedades, //esto lo paso al render, para poder imprimirlo en hbs
@@ -54,7 +47,7 @@ router.get('/', async function (req, res, next) {
     });
 });
 
-/*para  eliminar una novedad eliminar y modificar son <a>*/
+    /*para  eliminar una novedad eliminar y modificar son <a>*/
 router.get('/eliminar/:id', async(req, res, next) => {
     var id = req.params.id; // params en vez de body
    
@@ -64,7 +57,7 @@ router.get('/eliminar/:id', async(req, res, next) => {
     }
    
     await novedadesModel.deleteNovedadesById(id);
-    res.redirect('/admin/novedades')
+    res.redirect('/admin/productos')
 }); //cierra get de eliminar
 
 router.get('/agregar', (req, res, next) => {
@@ -89,7 +82,7 @@ router.post('/agregar', async (req, res, next) => {
                 ...req.body, // spread -> traer titulo, subtitulo y cuerpo
                 img_id
         });          
-            res.redirect('/admin/novedades')
+            res.redirect('/admin/productos')
         
         } else {
             res.render('admin/agregar', {
@@ -139,11 +132,13 @@ router.post('/modificar', async (req, res, next) => {
             titulo: req.body.titulo,
             subtitulo: req.body.subtitulo,
             cuerpo: req.body.cuerpo,
+            precio: req.body.precio,
+            descuento: req.body.descuento,
             img_id
         }
         console.log(obj)
         await novedadesModel.modificarNovedadById(obj, req.body.id);
-        res.redirect('/admin/novedades');
+        res.redirect('/admin/productos');
     } catch (error) {
         console.log(error)
         res.render('admin/modificar', {

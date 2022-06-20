@@ -10,7 +10,7 @@ router.get('/', async function(req, res, next) {
 
   var novedades = await novedadesModel.getNovedades(); //falta ;
 
-  novedades = novedades.splice(0, 5); // seleccionamos los primeros 5 elementos del array
+  novedades = novedades.splice(0, 7); // seleccionamos los primeros 7 elementos del array
   //se puede limitar de la query tambien
   novedades = novedades.map(novedad => {
     if (novedad.img_id) {
@@ -47,7 +47,7 @@ router.post('/', async(req, res, next) => {
 
   var obj = {
     to: 'gastonperalta93@gmail.com',
-    subject: 'CONTACTO CERVECERIA',
+    subject: 'CONTACTO TIERRA DE AVES',
     html: nombre + " se contacto a traves de la web y quiere mas informacion a este correo : " 
     + email + ". <br> Ademas, hizo este comentario: " + mensaje +
     ". <br> su tel es: " + tel

@@ -1,5 +1,4 @@
 var pool = require('./bd');
-//var md5 = require('md5');
 
 /*sirve ara listar novedades*/
 async function getNovedades() {
